@@ -40,6 +40,7 @@ def prediction(img):
    y_pred  = model.predict(img[np.newaxis,:,:,:])
    y_pred = np.squeeze(y_pred,axis=-1)
    axes[1].imshow(np.round(y_pred[0])) 
+   st.pyplot(fig)
 
 if __name__ == "__main__":
    main()   
