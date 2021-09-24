@@ -4,25 +4,24 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-
 model = tf.keras.models.load_model('model.h5', compile=False)
 
-st.title("Salt Identification Challenge")
+def main():
+   st.title("Salt Identification Challenge")
 
-col1,col2 = st.beta_columns(2)
-image = col1.file_uploader('Upload the image below')
+   col1,col2 = st.beta_columns(2)
+   image = col1.file_uploader('Upload the image below')
 
-col1,col2 = st.beta_columns(2)
-predict_button = col1.button('Predict on uploaded image')
+   col1,col2 = st.beta_columns(2)
+   predict_button = col1.button('Predict on uploaded image')
 
         
-if predict_button:
-    if image is not None:
+   if predict_button:
+     if image is not None:
         file_bytes = np.asarray(bytearray(image.read()), dtype=np.uint8)
         test_img = cv2.imdecode(file_bytes, 1)
         prediction(test_img)
-    else:
+     else:
         st.text('Please upload the image')
         
 def prediction(img):
@@ -41,3 +40,6 @@ def prediction(img):
   y_pred  = model.predict(img[np.newaxis,:,:,:])
   y_pred = np.squeeze(y_pred,axis=-1)
   axes[1].imshow(np.round(y_pred[0])) 
+
+if __name__ == "__main__":
+    main()   
