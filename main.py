@@ -25,21 +25,21 @@ def main():
         st.text('Please upload the image')
         
 def prediction(img):
-  img = cv2.resize(img,(512,512),interpolation=cv2.INTER_NEAREST)
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-  img = img/255.
+   img = cv2.resize(img,(512,512),interpolation=cv2.INTER_NEAREST)
+   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+   img = img/255.
   
-  fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 20))
-  axes[0].set_title('Image', size='large')
-  axes[0].axis('off')
-  axes[0].imshow(img)
+   fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 20))
+   axes[0].set_title('Image', size='large')
+   axes[0].axis('off')
+   axes[0].imshow(img)
   
-  axes[1].set_title('Predicted mask', size='large')
-  axes[1].axis('off')
+   axes[1].set_title('Predicted mask', size='large')
+   axes[1].axis('off')
   
-  y_pred  = model.predict(img[np.newaxis,:,:,:])
-  y_pred = np.squeeze(y_pred,axis=-1)
-  axes[1].imshow(np.round(y_pred[0])) 
+   y_pred  = model.predict(img[np.newaxis,:,:,:])
+   y_pred = np.squeeze(y_pred,axis=-1)
+   axes[1].imshow(np.round(y_pred[0])) 
 
 if __name__ == "__main__":
-    main()   
+   main()   
