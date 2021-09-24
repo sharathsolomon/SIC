@@ -9,11 +9,9 @@ model = tf.keras.models.load_model('model.h5', compile=False)
 def main():
    st.title("Salt Identification Challenge")
 
-   col1,col2 = st.beta_columns(2)
-   image = col1.file_uploader('Upload the image below')
+   image = st.file_uploader('Upload the image below')
 
-   col1,col2 = st.beta_columns(2)
-   predict_button = col1.button('Predict on uploaded image')
+   predict_button = st.button('Predict on uploaded image')
 
         
    if predict_button:
