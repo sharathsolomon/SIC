@@ -19,7 +19,8 @@ predict_button = col1.button('Predict on uploaded image')
         
 if predict_button:
     if image is not None:
-        test_img = cv2.imread(image)
+        file_bytes = np.asarray(bytearray(image.read()), dtype=np.uint8)
+        test_img = cv2.imdecode(file_bytes, 1)
         prediction(test_img)
     else:
         st.text('Please upload the image')
